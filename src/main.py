@@ -23,7 +23,7 @@ def descargar_datos():
 
     # Necesito las Urls,hacer un request para cada una y almacenarla
     # En objetos request, luego llamo json() y de json() lo pasaré a csv
-
+    logging.info("Funcion descargar_datos")
     # Descargar Datos Argentina Museos
     url_museos = 'https://datos.cultura.gob.ar/dataset/37305de4-3cce-4d4b-9d9a-fec3ca61d09f/resource/4207def0-2ff7' \
                  '-41d5-9095-d42ae8207a5d/download/museos_datosabiertos.csv '
@@ -48,6 +48,9 @@ def descargar_datos():
 
 
 def cargar_a_archivo(archivo, url):
+    # Esta funcion descarga los datos de la url y los guarda en un archivo csv
+    logging.info("Cargando datos al csv")
+    logging.info(archivo)
     with requests.get(url, stream=True) as datos_argentina_categoria:
         lines = (line.decode('utf-8') for line in datos_argentina_categoria.iter_lines())
         for row in csv.reader(lines):
@@ -61,9 +64,9 @@ def crear_archivo(categoria):
     ruta_archivo = "{}/".format(categoria) + strftime("%Y-%B", gmtime()) + "/"
     nombre_archivo = ruta_archivo + "{categoria}-{date}.csv".format(categoria=categoria, date=strftime("%d-%m-%Y"))
     logging.info("Creando archivo %s", nombre_archivo)
-    print(nombre_archivo)
+    # print(nombre_archivo)
     os.makedirs(ruta_archivo, exist_ok=True)
-    print(os.getcwd())
+    # print(os.getcwd())
     existe = exists(nombre_archivo)
     if existe:
         os.remove(nombre_archivo)
@@ -72,9 +75,10 @@ def crear_archivo(categoria):
 
 
 def iniciar_log():
-    #Configuraciones basicas del log
+    # Configuraciones basicas del log
     logging.basicConfig(filename='Registro.log', encoding='utf-8', level=logging.DEBUG)
     logging.info("Iniciando proceso")
+
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
