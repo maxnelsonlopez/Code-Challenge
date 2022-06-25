@@ -5,6 +5,7 @@
 import csv
 import os
 import logging
+import pandas as pd
 from os.path import exists
 from time import strftime, gmtime
 
@@ -54,7 +55,7 @@ def cargar_a_archivo(archivo, url):
     with requests.get(url, stream=True) as datos_argentina_categoria:
         lines = (line.decode('utf-8') for line in datos_argentina_categoria.iter_lines())
         for row in csv.reader(lines):
-            spamwriter = csv.writer(archivo, delimiter=';',
+            spamwriter = csv.writer(archivo, delimiter=',',
                                     quotechar='|', quoting=csv.QUOTE_MINIMAL)
             spamwriter.writerow(row)
 
@@ -86,12 +87,43 @@ def iniciar_log():
     logging.info("Iniciando proceso")
 
 
+def normalizar_datos():
+    # Funcion para cargar los .csv en data frames de pandas
+    logging.info("Normalizacion de datos")
+    nombre_museos, museos_ruta = generar_nombre_archivo("museos")
+    cines_csv, cines_ruta = generar_nombre_archivo("cines")
+    bibliotecas_csv, bibliotecas_ruta = generar_nombre_archivo("bibliotecas")
+    print(museos_csv)
+
+    csv_a_pandas(nombre_museos)
+
+
+def csv_a_pandas(nombre_museos):
+    """
+    Retorna un dataframe a partir de la ruta a un archivo csv
+
+            parametros:
+                    nombre_museos (string): The path to the archive
+            :return: data_frame (pandas.DataFrame)
+    :type nombre_museos: csv file
+    """
+    museos_csv = open(nombre_museos)
+    # use the first 2 lines of the file to detect separator
+    temp_lines = museos_csv.readline() + '\n' + museos_csv.readline()
+    dialect = csv.Sniffer().sniff(temp_lines, delimiters=';,')
+    # remember to go back to the start of the file for the next time it's read
+    museos_csv.seek(0)
+    data_frame = pd.read_csv(museos_csv, sep=dialect.delimiter)
+    data_frame.fillna(pd.NA, inplace=True)
+    
+    return data_frame
+
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
     print_hi('PyCharm')
     iniciar_log()
-    descargar_datos()
-
+    # descargar_datos()
+    normalizar_datos()
     # TODO agregar funcionalidad de logging
 
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/

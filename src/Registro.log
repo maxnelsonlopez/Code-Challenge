@@ -9,3 +9,182 @@ DEBUG:urllib3.connectionpool:https://datos.cultura.gob.ar:443 "GET /dataset/3730
 INFO:root:Creando archivo bibliotecas/2022-June/bibliotecas-24-06-2022.csv
 DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): datos.cultura.gob.ar:443
 DEBUG:urllib3.connectionpool:https://datos.cultura.gob.ar:443 "GET /dataset/37305de4-3cce-4d4b-9d9a-fec3ca61d09f/resource/01c6c048-dbeb-44e0-8efa-6944f73715d7/download/biblioteca_popular.csv%20 HTTP/1.1" 200 None
+INFO:root:Iniciando proceso
+INFO:root:Funcion descargar_datos
+INFO:root:Creando archivo museos/2022-June/museos-25-06-2022.csv
+INFO:root:Cargando datos al csv
+INFO:root:<_io.TextIOWrapper name='museos/2022-June/museos-25-06-2022.csv' mode='w' encoding='UTF-8'>
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): datos.cultura.gob.ar:443
+DEBUG:urllib3.connectionpool:https://datos.cultura.gob.ar:443 "GET /dataset/37305de4-3cce-4d4b-9d9a-fec3ca61d09f/resource/4207def0-2ff7-41d5-9095-d42ae8207a5d/download/museos_datosabiertos.csv%20 HTTP/1.1" 200 304431
+INFO:root:Creando archivo cines/2022-June/cines-25-06-2022.csv
+INFO:root:Cargando datos al csv
+INFO:root:<_io.TextIOWrapper name='cines/2022-June/cines-25-06-2022.csv' mode='w' encoding='UTF-8'>
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): datos.cultura.gob.ar:443
+DEBUG:urllib3.connectionpool:https://datos.cultura.gob.ar:443 "GET /dataset/37305de4-3cce-4d4b-9d9a-fec3ca61d09f/resource/392ce1a8-ef11-4776-b280-6f1c7fae16ae/download/cine.csv%20 HTTP/1.1" 200 96427
+INFO:root:Creando archivo bibliotecas/2022-June/bibliotecas-25-06-2022.csv
+INFO:root:Cargando datos al csv
+INFO:root:<_io.TextIOWrapper name='bibliotecas/2022-June/bibliotecas-25-06-2022.csv' mode='w' encoding='UTF-8'>
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): datos.cultura.gob.ar:443
+DEBUG:urllib3.connectionpool:https://datos.cultura.gob.ar:443 "GET /dataset/37305de4-3cce-4d4b-9d9a-fec3ca61d09f/resource/01c6c048-dbeb-44e0-8efa-6944f73715d7/download/biblioteca_popular.csv%20 HTTP/1.1" 200 511527
+INFO:root:Iniciando proceso
+INFO:root:Iniciando la normalizacion de datos
+INFO:root:Iniciando proceso
+INFO:root:Iniciando la normalizacion de datos
+INFO:root:Iniciando proceso
+INFO:root:Iniciando la normalizacion de datos
+INFO:root:Iniciando proceso
+INFO:root:Funcion descargar_datos
+INFO:root:Creando archivo museos/2022-June/museos-25-06-2022.csv
+INFO:root:Cargando datos al csv
+INFO:root:<_io.TextIOWrapper name='museos/2022-June/museos-25-06-2022.csv' mode='w' encoding='UTF-8'>
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): datos.cultura.gob.ar:443
+DEBUG:urllib3.connectionpool:https://datos.cultura.gob.ar:443 "GET /dataset/37305de4-3cce-4d4b-9d9a-fec3ca61d09f/resource/4207def0-2ff7-41d5-9095-d42ae8207a5d/download/museos_datosabiertos.csv%20 HTTP/1.1" 200 None
+INFO:root:Creando archivo cines/2022-June/cines-25-06-2022.csv
+INFO:root:Cargando datos al csv
+INFO:root:<_io.TextIOWrapper name='cines/2022-June/cines-25-06-2022.csv' mode='w' encoding='UTF-8'>
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): datos.cultura.gob.ar:443
+DEBUG:urllib3.connectionpool:https://datos.cultura.gob.ar:443 "GET /dataset/37305de4-3cce-4d4b-9d9a-fec3ca61d09f/resource/392ce1a8-ef11-4776-b280-6f1c7fae16ae/download/cine.csv%20 HTTP/1.1" 200 96427
+INFO:root:Creando archivo bibliotecas/2022-June/bibliotecas-25-06-2022.csv
+INFO:root:Cargando datos al csv
+INFO:root:<_io.TextIOWrapper name='bibliotecas/2022-June/bibliotecas-25-06-2022.csv' mode='w' encoding='UTF-8'>
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): datos.cultura.gob.ar:443
+DEBUG:urllib3.connectionpool:https://datos.cultura.gob.ar:443 "GET /dataset/37305de4-3cce-4d4b-9d9a-fec3ca61d09f/resource/01c6c048-dbeb-44e0-8efa-6944f73715d7/download/biblioteca_popular.csv%20 HTTP/1.1" 200 511527
+INFO:root:Iniciando la normalizacion de datos
+INFO:root:Iniciando proceso
+INFO:root:Funcion descargar_datos
+INFO:root:Creando archivo museos/2022-June/museos-25-06-2022.csv
+INFO:root:Cargando datos al csv
+INFO:root:<_io.TextIOWrapper name='museos/2022-June/museos-25-06-2022.csv' mode='w' encoding='UTF-8'>
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): datos.cultura.gob.ar:443
+DEBUG:urllib3.connectionpool:https://datos.cultura.gob.ar:443 "GET /dataset/37305de4-3cce-4d4b-9d9a-fec3ca61d09f/resource/4207def0-2ff7-41d5-9095-d42ae8207a5d/download/museos_datosabiertos.csv%20 HTTP/1.1" 200 304431
+INFO:root:Creando archivo cines/2022-June/cines-25-06-2022.csv
+INFO:root:Cargando datos al csv
+INFO:root:<_io.TextIOWrapper name='cines/2022-June/cines-25-06-2022.csv' mode='w' encoding='UTF-8'>
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): datos.cultura.gob.ar:443
+DEBUG:urllib3.connectionpool:https://datos.cultura.gob.ar:443 "GET /dataset/37305de4-3cce-4d4b-9d9a-fec3ca61d09f/resource/392ce1a8-ef11-4776-b280-6f1c7fae16ae/download/cine.csv%20 HTTP/1.1" 200 96427
+INFO:root:Creando archivo bibliotecas/2022-June/bibliotecas-25-06-2022.csv
+INFO:root:Cargando datos al csv
+INFO:root:<_io.TextIOWrapper name='bibliotecas/2022-June/bibliotecas-25-06-2022.csv' mode='w' encoding='UTF-8'>
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): datos.cultura.gob.ar:443
+DEBUG:urllib3.connectionpool:https://datos.cultura.gob.ar:443 "GET /dataset/37305de4-3cce-4d4b-9d9a-fec3ca61d09f/resource/01c6c048-dbeb-44e0-8efa-6944f73715d7/download/biblioteca_popular.csv%20 HTTP/1.1" 200 None
+INFO:root:Iniciando la normalizacion de datos
+INFO:root:Iniciando proceso
+INFO:root:Funcion descargar_datos
+INFO:root:Creando archivo museos/2022-June/museos-25-06-2022.csv
+INFO:root:Cargando datos al csv
+INFO:root:<_io.TextIOWrapper name='museos/2022-June/museos-25-06-2022.csv' mode='w' encoding='UTF-8'>
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): datos.cultura.gob.ar:443
+DEBUG:urllib3.connectionpool:https://datos.cultura.gob.ar:443 "GET /dataset/37305de4-3cce-4d4b-9d9a-fec3ca61d09f/resource/4207def0-2ff7-41d5-9095-d42ae8207a5d/download/museos_datosabiertos.csv%20 HTTP/1.1" 200 None
+INFO:root:Creando archivo cines/2022-June/cines-25-06-2022.csv
+INFO:root:Cargando datos al csv
+INFO:root:<_io.TextIOWrapper name='cines/2022-June/cines-25-06-2022.csv' mode='w' encoding='UTF-8'>
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): datos.cultura.gob.ar:443
+DEBUG:urllib3.connectionpool:https://datos.cultura.gob.ar:443 "GET /dataset/37305de4-3cce-4d4b-9d9a-fec3ca61d09f/resource/392ce1a8-ef11-4776-b280-6f1c7fae16ae/download/cine.csv%20 HTTP/1.1" 200 96427
+INFO:root:Creando archivo bibliotecas/2022-June/bibliotecas-25-06-2022.csv
+INFO:root:Cargando datos al csv
+INFO:root:<_io.TextIOWrapper name='bibliotecas/2022-June/bibliotecas-25-06-2022.csv' mode='w' encoding='UTF-8'>
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): datos.cultura.gob.ar:443
+DEBUG:urllib3.connectionpool:https://datos.cultura.gob.ar:443 "GET /dataset/37305de4-3cce-4d4b-9d9a-fec3ca61d09f/resource/01c6c048-dbeb-44e0-8efa-6944f73715d7/download/biblioteca_popular.csv%20 HTTP/1.1" 200 511527
+INFO:root:Iniciando la normalizacion de datos
+INFO:root:Iniciando proceso
+INFO:root:Iniciando la normalizacion de datos
+INFO:root:Iniciando proceso
+INFO:root:Iniciando la normalizacion de datos
+INFO:root:Iniciando proceso
+INFO:root:Iniciando la normalizacion de datos
+INFO:root:Iniciando proceso
+INFO:root:Iniciando la normalizacion de datos
+INFO:root:Iniciando proceso
+INFO:root:Funcion descargar_datos
+INFO:root:Creando archivo museos/2022-June/museos-25-06-2022.csv
+INFO:root:Cargando datos al csv
+INFO:root:<_io.TextIOWrapper name='museos/2022-June/museos-25-06-2022.csv' mode='w' encoding='UTF-8'>
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): datos.cultura.gob.ar:443
+DEBUG:urllib3.connectionpool:https://datos.cultura.gob.ar:443 "GET /dataset/37305de4-3cce-4d4b-9d9a-fec3ca61d09f/resource/4207def0-2ff7-41d5-9095-d42ae8207a5d/download/museos_datosabiertos.csv%20 HTTP/1.1" 200 None
+INFO:root:Creando archivo cines/2022-June/cines-25-06-2022.csv
+INFO:root:Cargando datos al csv
+INFO:root:<_io.TextIOWrapper name='cines/2022-June/cines-25-06-2022.csv' mode='w' encoding='UTF-8'>
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): datos.cultura.gob.ar:443
+DEBUG:urllib3.connectionpool:https://datos.cultura.gob.ar:443 "GET /dataset/37305de4-3cce-4d4b-9d9a-fec3ca61d09f/resource/392ce1a8-ef11-4776-b280-6f1c7fae16ae/download/cine.csv%20 HTTP/1.1" 200 96427
+INFO:root:Creando archivo bibliotecas/2022-June/bibliotecas-25-06-2022.csv
+INFO:root:Cargando datos al csv
+INFO:root:<_io.TextIOWrapper name='bibliotecas/2022-June/bibliotecas-25-06-2022.csv' mode='w' encoding='UTF-8'>
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): datos.cultura.gob.ar:443
+DEBUG:urllib3.connectionpool:https://datos.cultura.gob.ar:443 "GET /dataset/37305de4-3cce-4d4b-9d9a-fec3ca61d09f/resource/01c6c048-dbeb-44e0-8efa-6944f73715d7/download/biblioteca_popular.csv%20 HTTP/1.1" 200 511527
+INFO:root:Iniciando la normalizacion de datos
+INFO:root:Iniciando proceso
+INFO:root:Funcion descargar_datos
+INFO:root:Creando archivo museos/2022-June/museos-25-06-2022.csv
+INFO:root:Cargando datos al csv
+INFO:root:<_io.TextIOWrapper name='museos/2022-June/museos-25-06-2022.csv' mode='w' encoding='UTF-8'>
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): datos.cultura.gob.ar:443
+DEBUG:urllib3.connectionpool:https://datos.cultura.gob.ar:443 "GET /dataset/37305de4-3cce-4d4b-9d9a-fec3ca61d09f/resource/4207def0-2ff7-41d5-9095-d42ae8207a5d/download/museos_datosabiertos.csv%20 HTTP/1.1" 200 304431
+INFO:root:Creando archivo cines/2022-June/cines-25-06-2022.csv
+INFO:root:Cargando datos al csv
+INFO:root:<_io.TextIOWrapper name='cines/2022-June/cines-25-06-2022.csv' mode='w' encoding='UTF-8'>
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): datos.cultura.gob.ar:443
+DEBUG:urllib3.connectionpool:https://datos.cultura.gob.ar:443 "GET /dataset/37305de4-3cce-4d4b-9d9a-fec3ca61d09f/resource/392ce1a8-ef11-4776-b280-6f1c7fae16ae/download/cine.csv%20 HTTP/1.1" 200 96427
+INFO:root:Creando archivo bibliotecas/2022-June/bibliotecas-25-06-2022.csv
+INFO:root:Cargando datos al csv
+INFO:root:<_io.TextIOWrapper name='bibliotecas/2022-June/bibliotecas-25-06-2022.csv' mode='w' encoding='UTF-8'>
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): datos.cultura.gob.ar:443
+DEBUG:urllib3.connectionpool:https://datos.cultura.gob.ar:443 "GET /dataset/37305de4-3cce-4d4b-9d9a-fec3ca61d09f/resource/01c6c048-dbeb-44e0-8efa-6944f73715d7/download/biblioteca_popular.csv%20 HTTP/1.1" 200 511527
+INFO:root:Iniciando la normalizacion de datos
+INFO:root:Iniciando proceso
+INFO:root:Iniciando la normalizacion de datos
+INFO:root:Iniciando proceso
+INFO:root:Iniciando la normalizacion de datos
+INFO:root:Iniciando proceso
+INFO:root:Iniciando la normalizacion de datos
+INFO:root:Iniciando proceso
+INFO:root:Iniciando la normalizacion de datos
+INFO:root:Iniciando proceso
+INFO:root:Funcion descargar_datos
+INFO:root:Creando archivo museos/2022-June/museos-25-06-2022.csv
+INFO:root:Cargando datos al csv
+INFO:root:<_io.TextIOWrapper name='museos/2022-June/museos-25-06-2022.csv' mode='w' encoding='UTF-8'>
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): datos.cultura.gob.ar:443
+DEBUG:urllib3.connectionpool:https://datos.cultura.gob.ar:443 "GET /dataset/37305de4-3cce-4d4b-9d9a-fec3ca61d09f/resource/4207def0-2ff7-41d5-9095-d42ae8207a5d/download/museos_datosabiertos.csv%20 HTTP/1.1" 200 304431
+INFO:root:Creando archivo cines/2022-June/cines-25-06-2022.csv
+INFO:root:Cargando datos al csv
+INFO:root:<_io.TextIOWrapper name='cines/2022-June/cines-25-06-2022.csv' mode='w' encoding='UTF-8'>
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): datos.cultura.gob.ar:443
+DEBUG:urllib3.connectionpool:https://datos.cultura.gob.ar:443 "GET /dataset/37305de4-3cce-4d4b-9d9a-fec3ca61d09f/resource/392ce1a8-ef11-4776-b280-6f1c7fae16ae/download/cine.csv%20 HTTP/1.1" 200 None
+INFO:root:Creando archivo bibliotecas/2022-June/bibliotecas-25-06-2022.csv
+INFO:root:Cargando datos al csv
+INFO:root:<_io.TextIOWrapper name='bibliotecas/2022-June/bibliotecas-25-06-2022.csv' mode='w' encoding='UTF-8'>
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): datos.cultura.gob.ar:443
+DEBUG:urllib3.connectionpool:https://datos.cultura.gob.ar:443 "GET /dataset/37305de4-3cce-4d4b-9d9a-fec3ca61d09f/resource/01c6c048-dbeb-44e0-8efa-6944f73715d7/download/biblioteca_popular.csv%20 HTTP/1.1" 200 None
+INFO:root:Iniciando la normalizacion de datos
+INFO:root:Iniciando proceso
+INFO:root:Iniciando la normalizacion de datos
+INFO:root:Iniciando proceso
+INFO:root:Iniciando la normalizacion de datos
+INFO:root:Iniciando proceso
+INFO:root:Iniciando la normalizacion de datos
+INFO:root:Iniciando proceso
+INFO:root:Normalizacion de datos
+INFO:root:Iniciando proceso
+INFO:root:Normalizacion de datos
+INFO:root:Iniciando proceso
+INFO:root:Normalizacion de datos
+INFO:root:Iniciando proceso
+INFO:root:Normalizacion de datos
+INFO:root:Iniciando proceso
+INFO:root:Normalizacion de datos
+INFO:root:Iniciando proceso
+INFO:root:Normalizacion de datos
+INFO:root:Iniciando proceso
+INFO:root:Normalizacion de datos
+INFO:root:Iniciando proceso
+INFO:root:Normalizacion de datos
+INFO:root:Iniciando proceso
+INFO:root:Normalizacion de datos
+INFO:root:Iniciando proceso
+INFO:root:Normalizacion de datos
+INFO:root:Iniciando proceso
+INFO:root:Normalizacion de datos
+INFO:root:Iniciando proceso
+INFO:root:Normalizacion de datos
+INFO:root:Iniciando proceso
+INFO:root:Normalizacion de datos
