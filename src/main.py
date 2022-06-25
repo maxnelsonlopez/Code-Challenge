@@ -4,6 +4,7 @@
 # Press Double ⇧ to search everywhere for classes, files, tool windows, actions, and settings.
 import csv
 import os
+import logging
 from os.path import exists
 from time import strftime, gmtime
 
@@ -56,9 +57,10 @@ def cargar_a_archivo(archivo, url):
 
 
 def crear_archivo(categoria):
-    #Crea la ruta con el formato especificado en el pdf y luego crea el archivo
+    # Crea la ruta con el formato especificado en el pdf y luego crea el archivo
     ruta_archivo = "{}/".format(categoria) + strftime("%Y-%B", gmtime()) + "/"
     nombre_archivo = ruta_archivo + "{categoria}-{date}.csv".format(categoria=categoria, date=strftime("%d-%m-%Y"))
+    logging.info("Creando archivo %s", nombre_archivo)
     print(nombre_archivo)
     os.makedirs(ruta_archivo, exist_ok=True)
     print(os.getcwd())
@@ -69,9 +71,17 @@ def crear_archivo(categoria):
     return archivo
 
 
+def iniciar_log():
+    #Configuraciones basicas del log
+    logging.basicConfig(filename='Registro.log', encoding='utf-8', level=logging.DEBUG)
+    logging.info("Iniciando proceso")
+
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
     print_hi('PyCharm')
+    iniciar_log()
     descargar_datos()
+
+    # TODO agregar funcionalidad de logging
 
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/
