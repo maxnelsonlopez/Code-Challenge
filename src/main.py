@@ -11,6 +11,8 @@ from time import strftime, gmtime
 
 import requests
 
+categorias = ["museos", "cines", "bibliotecas"]
+
 
 def print_hi(name):
     # Use a breakpoint in the code line below to debug your script.
@@ -55,8 +57,8 @@ def cargar_a_archivo(archivo, url):
     with requests.get(url, stream=True) as datos_argentina_categoria:
         lines = (line.decode('utf-8') for line in datos_argentina_categoria.iter_lines())
         for row in csv.reader(lines):
-            spamwriter = csv.writer(archivo, delimiter=',',
-                                    quotechar='|', quoting=csv.QUOTE_MINIMAL)
+            spamwriter = csv.writer(archivo, delimiter=',', strict=True,
+                                    lineterminator='\r', quoting=csv.QUOTE_MINIMAL)
             spamwriter.writerow(row)
 
 
@@ -96,10 +98,11 @@ def normalizar_datos():
     """
     logging.info("Normalizacion de datos")
     nombre_museos, museos_ruta = generar_nombre_archivo("museos")
-    cines_csv, cines_ruta = generar_nombre_archivo("cines")
-    bibliotecas_csv, bibliotecas_ruta = generar_nombre_archivo("bibliotecas")
-
-    csv_a_pandas(nombre_museos)
+    nombre_cines, cines_ruta = generar_nombre_archivo("cines")
+    nombre_bibliotecas, bibliotecas_ruta = generar_nombre_archivo("bibliotecas")
+    df_museos = csv_a_pandas(nombre_museos)
+    df_cines = csv_a_pandas(nombre_cines)
+    df_bibliotecas = csv_a_pandas(nombre_bibliotecas)
 
 
 def csv_a_pandas(nombre_museos):
@@ -117,10 +120,11 @@ def csv_a_pandas(nombre_museos):
     dialect = csv.Sniffer().sniff(temp_lines, delimiters=';,')
     # remember to go back to the start of the file for the next time it's read
     museos_csv.seek(0)
-    data_frame = pd.read_csv(museos_csv, sep=dialect.delimiter)
+    data_frame = pd.read_csv(museos_csv, sep=dialect.delimiter, on_bad_lines='skip')
     data_frame.fillna(pd.NA, inplace=True)
-    
+
     return data_frame
+
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
@@ -131,23 +135,25 @@ if __name__ == '__main__':
     # descargar_datos()
     normalizar_datos()
 
-    #TODO Crear Tablas solicitadas
+    # TODO Crear Tablas solicitadas
 
-        #Tabla Unificada
-        #Tabla Agregada
-        #Tabla Cines
+    # Tabla Unificada Cod_Loc IdProvincia IdDepartamento categoria provincia	localidad	nombre
+    # Domicilio/direccion/Dirección CP telefono/Teléfono Cod_tel/cod_area?
+    # Mail	Web
 
-    #Conexion a postgrsql, tiene que ser facilmente configurable
+    # Tabla Agregada Tabla Cines
 
-    #Crear scripts SQL
-        #Creacion, con columna adicional fecha_de_carga
-        #Carga de datos
-        #Borrar Registros y Actualizar
+    # Conexion a postgrsql, tiene que ser facilmente configurable
 
-    #Crear Ejecutores de Script con sqlaclhemy
-    #Llevar los ejecutores a script.py ¿Facilitar el deploy?
+    # Crear scripts SQL
+    # Creacion, con columna adicional fecha_de_carga
+    # Carga de datos
+    # Borrar Registros y Actualizar
 
-    #Python Decouple
-    #Redactar el README
+    # Crear Ejecutores de Script con sqlaclhemy
+    # Llevar los ejecutores a script.py ¿Facilitar el deploy?
+
+    # Python Decouple
+    # Redactar el README
 
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/
