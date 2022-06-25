@@ -61,8 +61,7 @@ def cargar_a_archivo(archivo, url):
 
 def crear_archivo(categoria):
     # Crea la ruta con el formato especificado en el pdf y luego crea el archivo
-    ruta_archivo = "{}/".format(categoria) + strftime("%Y-%B", gmtime()) + "/"
-    nombre_archivo = ruta_archivo + "{categoria}-{date}.csv".format(categoria=categoria, date=strftime("%d-%m-%Y"))
+    nombre_archivo, ruta_archivo = generar_nombre_archivo(categoria)
     logging.info("Creando archivo %s", nombre_archivo)
     # print(nombre_archivo)
     os.makedirs(ruta_archivo, exist_ok=True)
@@ -72,6 +71,13 @@ def crear_archivo(categoria):
         os.remove(nombre_archivo)
     archivo = open(nombre_archivo, "w")
     return archivo
+
+
+def generar_nombre_archivo(categoria):
+    # Genera la ruta y el nombre del archivo segun la categoria
+    ruta_archivo = "{}/".format(categoria) + strftime("%Y-%B", gmtime()) + "/"
+    nombre_archivo = ruta_archivo + "{categoria}-{date}.csv".format(categoria=categoria, date=strftime("%d-%m-%Y"))
+    return nombre_archivo, ruta_archivo
 
 
 def iniciar_log():
