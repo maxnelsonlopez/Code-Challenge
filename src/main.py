@@ -88,12 +88,16 @@ def iniciar_log():
 
 
 def normalizar_datos():
-    # Funcion para cargar los .csv en data frames de pandas
+    """
+        Funcion para cargar los .csv en data frames de pandas
+
+        Llama a csv_a_pandas para cada categoría.
+
+    """
     logging.info("Normalizacion de datos")
     nombre_museos, museos_ruta = generar_nombre_archivo("museos")
     cines_csv, cines_ruta = generar_nombre_archivo("cines")
     bibliotecas_csv, bibliotecas_ruta = generar_nombre_archivo("bibliotecas")
-    print(museos_csv)
 
     csv_a_pandas(nombre_museos)
 
@@ -101,7 +105,7 @@ def normalizar_datos():
 def csv_a_pandas(nombre_museos):
     """
     Retorna un dataframe a partir de la ruta a un archivo csv
-
+    TODO Aquí añadiré algunos procesos y quizá cambie el nombre de la función.
             parametros:
                     nombre_museos (string): The path to the archive
             :return: data_frame (pandas.DataFrame)
@@ -121,9 +125,29 @@ def csv_a_pandas(nombre_museos):
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
     print_hi('PyCharm')
+    # agregar funcionalidad de logging
+
     iniciar_log()
     # descargar_datos()
     normalizar_datos()
-    # TODO agregar funcionalidad de logging
+
+    #TODO Crear Tablas solicitadas
+
+        #Tabla Unificada
+        #Tabla Agregada
+        #Tabla Cines
+
+    #Conexion a postgrsql, tiene que ser facilmente configurable
+
+    #Crear scripts SQL
+        #Creacion, con columna adicional fecha_de_carga
+        #Carga de datos
+        #Borrar Registros y Actualizar
+
+    #Crear Ejecutores de Script con sqlaclhemy
+    #Llevar los ejecutores a script.py ¿Facilitar el deploy?
+
+    #Python Decouple
+    #Redactar el README
 
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/
