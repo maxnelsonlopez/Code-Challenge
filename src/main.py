@@ -12,7 +12,7 @@ from time import strftime, gmtime
 import requests
 
 categorias = ["museos", "cines", "bibliotecas"]
-
+data_frames = []
 
 def print_hi(name):
     # Use a breakpoint in the code line below to debug your script.
@@ -50,16 +50,17 @@ def descargar_datos():
     cargar_a_archivo(archivo_bibliotecas, url_bibliotecas)
 
 
-def cargar_a_archivo(archivo, url):
+def cargar_a_archivo(nombre_archivo, url):
     # Esta funcion descarga los datos de la url y los guarda en un archivo csv
     logging.info("Cargando datos al csv")
-    logging.info(archivo)
+    logging.info(nombre_archivo)
     with requests.get(url, stream=True) as datos_argentina_categoria:
-        lines = (line.decode('utf-8') for line in datos_argentina_categoria.iter_lines())
-        for row in csv.reader(lines):
-            spamwriter = csv.writer(archivo, delimiter=',', strict=True,
-                                    lineterminator='\r', quoting=csv.QUOTE_MINIMAL)
-            spamwriter.writerow(row)
+        open(str(nombre_archivo.name), "wb").write(datos_argentina_categoria.content)
+        # lines = (line.decode('utf-8') for line in datos_argentina_categoria.iter_lines())
+        # for row in csv.reader(lines):
+        #     spamwriter = csv.writer(archivo, delimiter=',', strict=True,
+        #                             lineterminator='\r', quoting=csv.QUOTE_MINIMAL)
+        #     spamwriter.writerow(row)
 
 
 def crear_archivo(categoria):
@@ -104,6 +105,8 @@ def normalizar_datos():
     df_cines = csv_a_pandas(nombre_cines)
     df_bibliotecas = csv_a_pandas(nombre_bibliotecas)
 
+    data_frames.append(df_museos, df_cines, df_bibliotecas)
+
 
 def csv_a_pandas(nombre_museos):
     """
@@ -115,18 +118,28 @@ def csv_a_pandas(nombre_museos):
     :type nombre_museos: csv file
     """
     museos_csv = open(nombre_museos)
+    print(museos_csv)
     # use the first 2 lines of the file to detect separator
     temp_lines = museos_csv.readline() + '\n' + museos_csv.readline()
     dialect = csv.Sniffer().sniff(temp_lines, delimiters=';,')
     # remember to go back to the start of the file for the next time it's read
     museos_csv.seek(0)
-    data_frame = pd.read_csv(museos_csv, sep=dialect.delimiter, on_bad_lines='skip')
+    data_frame = pd.read_csv(museos_csv, sep=dialect.delimiter, on_bad_lines='warn')
     data_frame.fillna(pd.NA, inplace=True)
 
     return data_frame
 
 
 # Press the green button in the gutter to run the script.
+def crear_tabla_unificada():
+    # Tabla Unificada Cod_Loc IdProvincia IdDepartamento categoria provincia	localidad	nombre
+    # Domicilio/direccion/Dirección CP telefono/Teléfono Cod_tel/cod_area?
+    # Mail	Web
+    nombres_columnas = ['Cod_Loc', 'IdProvincia', 'IdDepartamento', 'categoria', 'provincia', 'localidad',
+                        'nombreDomicilio', 'direccion', 'Dirección', 'CP', 'telefono', 'Teléfono', 'Cod_tel',
+                        'cod_area']
+
+
 if __name__ == '__main__':
     print_hi('PyCharm')
     # agregar funcionalidad de logging
@@ -140,7 +153,7 @@ if __name__ == '__main__':
     # Tabla Unificada Cod_Loc IdProvincia IdDepartamento categoria provincia	localidad	nombre
     # Domicilio/direccion/Dirección CP telefono/Teléfono Cod_tel/cod_area?
     # Mail	Web
-
+    crear_tabla_unificada()
     # Tabla Agregada Tabla Cines
 
     # Conexion a postgrsql, tiene que ser facilmente configurable
