@@ -14,6 +14,7 @@ import requests
 categorias = ["museos", "cines", "bibliotecas"]
 data_frames = []
 
+
 def print_hi(name):
     # Use a breakpoint in the code line below to debug your script.
     print(f'Hi, {name}')  # Press ⌘F8 to toggle the breakpoint.
@@ -105,8 +106,9 @@ def normalizar_datos():
     df_cines = csv_a_pandas(nombre_cines)
     df_bibliotecas = csv_a_pandas(nombre_bibliotecas)
 
-    data_frames.append(df_museos, df_cines, df_bibliotecas)
-
+    data_frames.append(df_museos)
+    data_frames.append(df_cines)
+    data_frames.append(df_bibliotecas)
 
 def csv_a_pandas(nombre_museos):
     """
@@ -118,7 +120,6 @@ def csv_a_pandas(nombre_museos):
     :type nombre_museos: csv file
     """
     museos_csv = open(nombre_museos)
-    print(museos_csv)
     # use the first 2 lines of the file to detect separator
     temp_lines = museos_csv.readline() + '\n' + museos_csv.readline()
     dialect = csv.Sniffer().sniff(temp_lines, delimiters=';,')
@@ -135,17 +136,38 @@ def crear_tabla_unificada():
     # Tabla Unificada Cod_Loc IdProvincia IdDepartamento categoria provincia	localidad	nombre
     # Domicilio/direccion/Dirección CP telefono/Teléfono Cod_tel/cod_area?
     # Mail	Web
-    nombres_columnas = ['Cod_Loc', 'IdProvincia', 'IdDepartamento', 'categoria', 'provincia', 'localidad',
-                        'nombreDomicilio', 'direccion', 'Dirección', 'CP', 'telefono', 'Teléfono', 'Cod_tel',
-                        'cod_area']
+    nombres_columnas = ['Cod_Loc', 'IdProvincia', 'IdDepartamento', 'Categoría', 'categoria', 'Provincia', 'provincia', 'localidad',
+                        'nombre', 'Domicilio', 'direccion', 'Dirección', 'piso', 'CP', 'telefono', 'Teléfono', 'Cod_tel',
+                        'cod_area', 'Mail', 'mail', 'Web', 'web']
+    df_unificado = pd.DataFrame()
+    for df in data_frames:
+        print(df.columns.values)
+        df_temp = pd.DataFrame()
+        for columna in nombres_columnas:
+            if columna in df.columns.values:
+                if columna == 'Cod_Loc':
+                    df_temp['cod_localidad'] = df[columna]
+                if columna == 'IdProvincia':
+                    df_temp['id_provincia'] = df[columna]
+                if columna == 'IdDepartamento':
+                    df_temp['id_departamento'] = df[columna]
+                if columna == 'Categoría' or columna == 'categoria':
+                    df_temp['categoría'] = df[columna]
+                if columna == 'direccion' or columna == 'Dirección' or columna == 'Domicilio':
+                    df_temp['domicilio'] = df[columna]
 
+                print(columna)
+                df_temp[columna]=(df[columna])
+                #print(df_temp.info)
+        pd.concat([df_unificado,df_temp])
+    print(df_unificado.info)
 
 if __name__ == '__main__':
     print_hi('PyCharm')
     # agregar funcionalidad de logging
 
     iniciar_log()
-    # descargar_datos()
+    #descargar_datos()
     normalizar_datos()
 
     # TODO Crear Tablas solicitadas
