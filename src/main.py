@@ -110,91 +110,109 @@ def normalizar_datos():
     data_frames.append(df_cines)
     data_frames.append(df_bibliotecas)
 
+    for df in data_frames:
+        renombrar_campos(df)
 
-def csv_a_pandas(nombre_museos):
+
+def csv_a_pandas(nombre_archivo):
     """
     Retorna un dataframe a partir de la ruta a un archivo csv
     TODO Aquí añadiré algunos procesos y quizá cambie el nombre de la función.
             parametros:
                     nombre_museos (string): The path to the archive
             :return: data_frame (pandas.DataFrame)
-    :type nombre_museos: csv file
+    :type nombre_archivo: csv file
     """
-    museos_csv = open(nombre_museos)
+    archivo_csv = open(nombre_archivo)
     # use the first 2 lines of the file to detect separator
-    temp_lines = museos_csv.readline() + '\n' + museos_csv.readline()
+    temp_lines = archivo_csv.readline() + '\n' + archivo_csv.readline()
     dialect = csv.Sniffer().sniff(temp_lines, delimiters=';,')
     # remember to go back to the start of the file for the next time it's read
-    museos_csv.seek(0)
-    data_frame = pd.read_csv(museos_csv, sep=dialect.delimiter, on_bad_lines='warn')
+    archivo_csv.seek(0)
+    data_frame = pd.read_csv(archivo_csv, sep=dialect.delimiter, on_bad_lines='warn')
     data_frame.fillna(pd.NA, inplace=True)
 
     return data_frame
 
 
+def renombrar_campos(df):
+    """
+
+    :param df:
+    :return: void
+    """
+    for columna in df.columns.values:
+        if columna == 'Cod_Loc':
+            df.rename(columns={"Cod_Loc": "cod_localidad"}, inplace=True)
+            continue
+        if columna == 'IdProvincia':
+            df.rename(columns={f"{columna}": 'id_provincia'}, inplace=True)
+            continue
+        if columna == 'IdDepartamento':
+            df.rename(columns={f"{columna}": 'id_departamento'}, inplace=True)
+            continue
+        if columna == 'Categoría' or columna == 'categoria':
+            df.rename(columns={f"{columna}": 'categoría'}, inplace=True)
+            continue
+        if columna == 'Provincia' or columna == 'provincia':
+            df.rename(columns={f"{columna}": 'provincia'}, inplace=True)
+            continue
+        if columna == 'localidad' or columna == 'Localidad':
+            df.rename(columns={f"{columna}": 'localidad'}, inplace=True)
+            continue
+        if columna == 'Nombre' or columna == 'nombre':
+            df.rename(columns={f"{columna}": 'nombre'}, inplace=True)
+            continue
+        if columna == 'Piso' or columna == 'piso':
+            df.rename(columns={f"{columna}": 'piso'}, inplace=True)
+            continue
+        if columna == 'direccion' or columna == 'Dirección' or columna == 'Domicilio':
+            df.rename(columns={f"{columna}": 'domicilio'}, inplace=True)
+            continue
+        if columna == 'CP':
+            df.rename(columns={f"{columna}": 'código postal'}, inplace=True)
+            continue
+        if columna == 'Cod_tel' or columna == 'cod_area':
+            df.rename(columns={f"{columna}": 'cod_area'}, inplace=True)
+            continue
+        if columna == 'telefono' or columna == 'Teléfono':
+            df.rename(columns={f"{columna}": 'número de teléfono'}, inplace=True)
+            continue
+        if columna == 'mail' or columna == 'Mail':
+            df.rename(columns={f"{columna}": 'mail'}, inplace=True)
+            continue
+        if columna == 'web' or columna == 'Web':
+            df.rename(columns={f"{columna}": 'web'}, inplace=True)
+            continue
+
+
 # Press the green button in the gutter to run the script.
 def crear_tabla_unificada():
+    """
+    Combina los data frame de museos, cines y bibliotecas y retorna una tabla unificada
+    :rtype: data_frame
+    """
     # Tabla Unificada Cod_Loc IdProvincia IdDepartamento categoria provincia	localidad	nombre
     # Domicilio/direccion/Dirección CP telefono/Teléfono Cod_tel/cod_area?
     # Mail	Web
-    nombres_columnas = ['Cod_Loc', 'IdProvincia', 'IdDepartamento', 'Categoría', 'categoria', 'Provincia', 'provincia',
-                        'localidad', 'Localidad', 'Nombre', 'Piso',
-                        'nombre', 'Domicilio', 'direccion', 'Dirección', 'piso', 'CP', 'telefono', 'Teléfono',
-                        'Cod_tel',
-                        'cod_area', 'Mail', 'mail', 'Web', 'web']
+    nombres_columnas = ['cod_localidad', 'id_provincia', 'id_departamento', 'categoría', 'categoria', 'provincia',
+                        'localidad', 'piso', 'nombre', 'domicilio', 'código postal', 'número de teléfono',
+                        'cod_area', 'mail', 'web']
     df_unificado = pd.DataFrame()
     for df in data_frames:
-        #print(df.columns.values)
+        # print(df.columns.values)
         df_temp = pd.DataFrame()
         for columna in nombres_columnas:
             if columna in df.columns.values:
-                #print(columna)
-                if columna == 'Cod_Loc':
-                    df_temp['cod_localidad'] = df[columna]
-                    continue
-                if columna == 'IdProvincia':
-                    df_temp['id_provincia'] = df[columna]
-                    continue
-                if columna == 'IdDepartamento':
-                    df_temp['id_departamento'] = df[columna]
-                    continue
-                if columna == 'Categoría' or columna == 'categoria':
-                    df_temp['categoría'] = df[columna]
-                    continue
-                if columna == 'Provincia' or columna == 'provincia':
-                    df_temp['provincia'] = df[columna]
-                    continue
-                if columna == 'localidad' or columna == 'Localidad':
-                    df_temp['localidad'] = df[columna]
-                    continue
-                if columna == 'Nombre' or columna == 'nombre':
-                    df_temp['nombre'] = df[columna]
-                    continue
-                if columna == 'Piso' or columna == 'piso':
-                    df_temp['piso'] = df[columna]
-                    continue
-                if columna == 'direccion' or columna == 'Dirección' or columna == 'Domicilio':
-                    df_temp['domicilio'] = df[columna]
-                    continue
-                if columna == 'CP':
-                    df_temp['código_postal'] = df[columna]
-                    continue
-                if columna == 'Cod_tel' or columna == 'cod_area':
-                    df_temp['cod_area'] = df[columna]
-                    continue
-                if columna == 'telefono' or columna == 'Teléfono':
-                    df_temp['número de teléfono'] = df[columna]
-                    continue
-                if columna == 'mail' or columna == 'Mail':
-                    df_temp['mail'] = df[columna]
-                    continue
-                if columna == 'web' or columna == 'Web':
-                    df_temp['mail'] = df[columna]
-                    continue
-                df_temp[columna] = (df[columna])
-        print(df_temp.columns.values)
-        pd.concat([df_unificado, df_temp])
-    print(df_unificado.info)
+                df_temp[columna] = df[columna]
+        print(df_temp.info)
+        df_unificado = pd.concat([df_unificado, df_temp])
+
+    #TODO hace falta unificar correctamente los campos cod_area y numero de telefono, domicilio y piso
+    #Cuidado de los NaN, no han sido manejados correctamente aún
+    df_unificado['teléfono'] = "("+df_unificado['cod_area'].astype(str) +") " + df_unificado['número de teléfono']
+    df_unificado['direccion'] = df_unificado['domicilio'] + " " + df_unificado['piso'].astype(str)
+    print(df_unificado['direccion'].to_string())
 
 
 if __name__ == '__main__':
