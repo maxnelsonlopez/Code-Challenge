@@ -110,6 +110,7 @@ def normalizar_datos():
     data_frames.append(df_cines)
     data_frames.append(df_bibliotecas)
 
+
 def csv_a_pandas(nombre_museos):
     """
     Retorna un dataframe a partir de la ruta a un archivo csv
@@ -136,38 +137,72 @@ def crear_tabla_unificada():
     # Tabla Unificada Cod_Loc IdProvincia IdDepartamento categoria provincia	localidad	nombre
     # Domicilio/direccion/Dirección CP telefono/Teléfono Cod_tel/cod_area?
     # Mail	Web
-    nombres_columnas = ['Cod_Loc', 'IdProvincia', 'IdDepartamento', 'Categoría', 'categoria', 'Provincia', 'provincia', 'localidad',
-                        'nombre', 'Domicilio', 'direccion', 'Dirección', 'piso', 'CP', 'telefono', 'Teléfono', 'Cod_tel',
+    nombres_columnas = ['Cod_Loc', 'IdProvincia', 'IdDepartamento', 'Categoría', 'categoria', 'Provincia', 'provincia',
+                        'localidad', 'Localidad', 'Nombre', 'Piso',
+                        'nombre', 'Domicilio', 'direccion', 'Dirección', 'piso', 'CP', 'telefono', 'Teléfono',
+                        'Cod_tel',
                         'cod_area', 'Mail', 'mail', 'Web', 'web']
     df_unificado = pd.DataFrame()
     for df in data_frames:
-        print(df.columns.values)
+        #print(df.columns.values)
         df_temp = pd.DataFrame()
         for columna in nombres_columnas:
             if columna in df.columns.values:
+                #print(columna)
                 if columna == 'Cod_Loc':
                     df_temp['cod_localidad'] = df[columna]
+                    continue
                 if columna == 'IdProvincia':
                     df_temp['id_provincia'] = df[columna]
+                    continue
                 if columna == 'IdDepartamento':
                     df_temp['id_departamento'] = df[columna]
+                    continue
                 if columna == 'Categoría' or columna == 'categoria':
                     df_temp['categoría'] = df[columna]
+                    continue
+                if columna == 'Provincia' or columna == 'provincia':
+                    df_temp['provincia'] = df[columna]
+                    continue
+                if columna == 'localidad' or columna == 'Localidad':
+                    df_temp['localidad'] = df[columna]
+                    continue
+                if columna == 'Nombre' or columna == 'nombre':
+                    df_temp['nombre'] = df[columna]
+                    continue
+                if columna == 'Piso' or columna == 'piso':
+                    df_temp['piso'] = df[columna]
+                    continue
                 if columna == 'direccion' or columna == 'Dirección' or columna == 'Domicilio':
                     df_temp['domicilio'] = df[columna]
-
-                print(columna)
-                df_temp[columna]=(df[columna])
-                #print(df_temp.info)
-        pd.concat([df_unificado,df_temp])
+                    continue
+                if columna == 'CP':
+                    df_temp['código_postal'] = df[columna]
+                    continue
+                if columna == 'Cod_tel' or columna == 'cod_area':
+                    df_temp['cod_area'] = df[columna]
+                    continue
+                if columna == 'telefono' or columna == 'Teléfono':
+                    df_temp['número de teléfono'] = df[columna]
+                    continue
+                if columna == 'mail' or columna == 'Mail':
+                    df_temp['mail'] = df[columna]
+                    continue
+                if columna == 'web' or columna == 'Web':
+                    df_temp['mail'] = df[columna]
+                    continue
+                df_temp[columna] = (df[columna])
+        print(df_temp.columns.values)
+        pd.concat([df_unificado, df_temp])
     print(df_unificado.info)
+
 
 if __name__ == '__main__':
     print_hi('PyCharm')
     # agregar funcionalidad de logging
 
     iniciar_log()
-    #descargar_datos()
+    # descargar_datos()
     normalizar_datos()
 
     # TODO Crear Tablas solicitadas
