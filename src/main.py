@@ -231,7 +231,7 @@ if __name__ == '__main__':
     # agregar funcionalidad de logging
 
     iniciar_log()
-    #descargar_datos()
+    descargar_datos()
     normalizar_datos()
 
     # TODO Crear Tablas solicitadas
