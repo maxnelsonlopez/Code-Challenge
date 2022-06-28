@@ -176,7 +176,7 @@ def renombrar_campos(df):
             df.rename(columns={f"{columna}": 'cod_area'}, inplace=True)
             continue
         if columna == 'telefono' or columna == 'Teléfono':
-            df.rename(columns={f"{columna}": 'número de teléfono'}, inplace=True)
+            df.rename(columns={f"{columna}": 'numero de telefono'}, inplace=True)
             continue
         if columna == 'mail' or columna == 'Mail':
             df.rename(columns={f"{columna}": 'mail'}, inplace=True)
@@ -186,7 +186,6 @@ def renombrar_campos(df):
             continue
 
 
-# Press the green button in the gutter to run the script.
 def crear_tabla_unificada():
     """
     Combina los data frame de museos, cines y bibliotecas y retorna una tabla unificada
@@ -196,7 +195,7 @@ def crear_tabla_unificada():
     # Domicilio/direccion/Dirección CP telefono/Teléfono Cod_tel/cod_area?
     # Mail	Web
     nombres_columnas = ['cod_localidad', 'id_provincia', 'id_departamento', 'categoría', 'categoria', 'provincia',
-                        'localidad', 'piso', 'nombre', 'domicilio', 'código postal', 'número de teléfono',
+                        'localidad', 'piso', 'nombre', 'domicilio', 'código postal', 'numero de telefono',
                         'cod_area', 'mail', 'web']
     df_unificado = pd.DataFrame()
     for df in data_frames:
@@ -205,14 +204,26 @@ def crear_tabla_unificada():
         for columna in nombres_columnas:
             if columna in df.columns.values:
                 df_temp[columna] = df[columna]
-        print(df_temp.info)
+        #print(df_temp.info)
         df_unificado = pd.concat([df_unificado, df_temp])
 
     #TODO hace falta unificar correctamente los campos cod_area y numero de telefono, domicilio y piso
     #Cuidado de los NaN, no han sido manejados correctamente aún
-    df_unificado['teléfono'] = "("+df_unificado['cod_area'].astype(str) +") " + df_unificado['número de teléfono']
-    df_unificado['direccion'] = df_unificado['domicilio'] + " " + df_unificado['piso'].astype(str)
-    print(df_unificado['direccion'].to_string())
+    #Voy a verificar cuando un numero de telefono sea nulo, si lo es entonces el telefono entero es nulo
+    #Si el cod de area es nulo y el numero de telefono no, entonces el telefono es el numero de telefono
+    df_unificado['teléfono'] = "("+df_unificado['cod_area'].astype(str) +") " + df_unificado['numero de telefono']
+    #print(df_unificado.keys())
+    #print(str(df_unificado['numero de telefono'].to_string()))
+    index=0
+    for dato in df_unificado['numero de telefono']:
+        print(dato)
+        if pd.isna(dato):
+            df_unificado.at[index,'telefono'] = pd.NA
+        index +=1
+
+    #Si el piso es nulo entonces la dirección es igual al domicilio
+    #df_unificado['direccion'] = df_unificado['domicilio'] + " " + df_unificado['piso'].astype(str)
+    print(df_unificado['teléfono'].to_string())
 
 
 if __name__ == '__main__':
@@ -220,7 +231,7 @@ if __name__ == '__main__':
     # agregar funcionalidad de logging
 
     iniciar_log()
-    # descargar_datos()
+    #descargar_datos()
     normalizar_datos()
 
     # TODO Crear Tablas solicitadas
